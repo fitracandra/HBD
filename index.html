@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Selamat Ulang Tahun 🎂</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #ffdde1 0%, #ee9ca7 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', 'Poppins', 'Comic Neue', cursive;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255,255,240,0.85);
+            border-radius: 60px;
+            padding: 2rem 2rem 3rem;
+            box-shadow: 0 30px 40px rgba(0,0,0,0.2);
+            backdrop-filter: blur(8px);
+            max-width: 500px;
+            width: 100%;
+            animation: fadeInUp 1s ease-out;
+        }
+        h1 {
+            font-size: 2.8rem;
+            color: #b43b5c;
+            text-shadow: 3px 3px 0 #ffe0b5;
+            margin-bottom: 0.5rem;
+        }
+        .birthday-name {
+            font-size: 2rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #ff6a88, #ffb347);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin: 10px 0;
+        }
+        .cake {
+            font-size: 90px;
+            margin: 20px 0;
+            animation: bounce 2s infinite;
+            display: inline-block;
+        }
+        .balloons {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .balloon {
+            width: 55px;
+            height: 70px;
+            background: radial-gradient(circle at 30% 30%, #ffb7c5, #ff6f91);
+            border-radius: 50%;
+            position: relative;
+            animation: float 3s ease-in-out infinite;
+            box-shadow: -4px 8px 12px rgba(0,0,0,0.2);
+        }
+        .balloon::after {
+            content: "✧";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 18px;
+            color: #a0522d;
+        }
+        .balloon:nth-child(2) { background: radial-gradient(circle at 30% 30%, #a7e0ff, #3f8ef5); animation-delay: 0.4s; }
+        .balloon:nth-child(3) { background: radial-gradient(circle at 30% 30%, #c2ffb0, #5fad41); animation-delay: 0.7s; }
+        .balloon:nth-child(4) { background: radial-gradient(circle at 30% 30%, #ffe5a3, #f7b32b); animation-delay: 0.2s; }
+        .balloon:nth-child(5) { background: radial-gradient(circle at 30% 30%, #e3bcff, #a75bf5); animation-delay: 0.9s; }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        @keyframes bounce {
+            0%,100%{ transform: translateY(0); }
+            50%{ transform: translateY(-15px); }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .btn-wish {
+            background: #ff8282;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            padding: 12px 24px;
+            border-radius: 40px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-weight: bold;
+            box-shadow: 0 6px 0 #b13e3e;
+        }
+        .btn-wish:active {
+            transform: translateY(3px);
+            box-shadow: 0 3px 0 #b13e3e;
+        }
+        .wish-text {
+            margin-top: 20px;
+            font-size: 1rem;
+            background: #fff0e0;
+            padding: 12px;
+            border-radius: 40px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        footer {
+            margin-top: 25px;
+            font-size: 0.75rem;
+            color: #9c5a5a;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="balloons">
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+        <div class="balloon"></div>
+    </div>
+    <h1>🎉 HAPPY BIRTHDAY! 🎉</h1>
+    <div class="birthday-name" id="namaTeman">Untuk Kamu Hebat!</div>
+    <div class="cake">🎂🎈✨</div>
+    <button class="btn-wish" id="wishBtn">💖 Kirim Harapan 💖</button>
+    <div id="wishMessage" class="wish-text" style="display: none;">💝 Semoga semua impianmu tercapai, bahagia selalu, dan sehat selalu! 🎂🥳</div>
+    <footer>✨ Spesial untuk hari ini ✨</footer>
+</div>
+<script>
+    // Ganti nama di sini sesuai yang ingin dirayakan
+    const namaOrang = "Buat Kamu"; // ubah sesuai keinginan
+    document.getElementById('namaTeman').innerText = namaOrang + " ❤️";
+    
+    document.getElementById('wishBtn').addEventListener('click', function(){
+        let msgDiv = document.getElementById('wishMessage');
+        if(msgDiv.style.display === 'none' || msgDiv.style.display === ''){
+            msgDiv.style.display = 'inline-block';
+            msgDiv.style.animation = 'fadeInUp 0.4s';
+        } else {
+            // biar muncul lagi efek
+            msgDiv.style.display = 'none';
+            setTimeout(()=>{ msgDiv.style.display = 'inline-block'; }, 50);
+        }
+    });
+</script>
+</body>
+</html>
